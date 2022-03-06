@@ -1,10 +1,18 @@
-var CryptoJS = require('crypto-js');
+const http = require('http');
+require('dotenv').config();
+const app = require('./app');
 
-// Encrypt
-var ciphertext = CryptoJS.AES.encrypt('password', 'secret key 123').toString();
-console.log(ciphertext);
-// Decrypt
-var bytes = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
-var originalText = bytes.toString(CryptoJS.enc.Utf8);
+const { mongoConnect } = require('./services/mongo');
 
-console.log(originalText); // 'my message'
+const PORT = process.env.PORT || 8000;
+
+const server = http.createServer(app);
+
+async function serverStart() {
+  await mongoConnect();
+  server.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}...`);
+  });
+}
+
+serverStart();
