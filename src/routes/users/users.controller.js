@@ -40,7 +40,7 @@ async function httpLogin(req, res) {
       address: user.address,
       city: user.city,
       province: user.province,
-      token,
+      accessToken: token,
     },
   });
 }
