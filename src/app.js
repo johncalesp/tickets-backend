@@ -8,7 +8,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:3500', 'http://192.168.2.15', /\.netlify\.app$/],
+    origin: [
+      'http://localhost:3500',
+      'http://192.168.2.15:3500',
+      /\.netlify\.app$/,
+    ],
   })
 );
 
