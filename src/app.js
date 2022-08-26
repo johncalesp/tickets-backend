@@ -23,7 +23,7 @@ app.use(express.json());
 app.use('/api', api);
 
 app.get('/api/test', (req, res) => {
-  res.status(201).json({ result: 'success' });
+  res.status(200).json({ result: 'success' });
 });
 
 module.exports = app;
